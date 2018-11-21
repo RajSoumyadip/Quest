@@ -5,7 +5,7 @@ package Model;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
-
+//Defining class
 	public class DataBaseDAO {
 
 		public boolean insertRecord(String c)
@@ -19,7 +19,6 @@ import java.sql.PreparedStatement;
 				Connection con=(Connection) DriverManager.getConnection(url,user,pass);
 				PreparedStatement ps=con.prepareStatement("Insert into Data values(?,?,?,?)");
 				ps.setString(1, c);
-				
 				ps.executeUpdate();
 			}catch(Exception ex)
 			{
