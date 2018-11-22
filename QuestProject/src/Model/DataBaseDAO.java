@@ -92,12 +92,12 @@ import java.util.ArrayList;
 				String user="root";
 				String pass="root";
 				Connection con=DriverManager.getConnection(url,user,pass);
-				String sql="select * from Question_Post inner join User on Question_Post.ques_user_id = User.user_id and Question_Post.category = 'Science'";
+				String sql="select * from Question_Post left join Answer_Post on Question_Post.ques_id = Answer_Post.ans_ques_id and Question_Post.category = 'Science'";
 				PreparedStatement ps=con.prepareStatement(sql);
 				ResultSet rs=ps.executeQuery();
 				while(rs.next()) {
 					content =("Asked By @ "+
-							rs.getString(6)+" "+rs.getString(7)+" : "+rs.getString(4));
+							rs.getString(2)+" : "+rs.getString(4)+" Answered By: @"+rs.getString(6)+ ": :"+rs.getString(7));
 					System.out.println(content);
 				temp.add(content);
 				}
