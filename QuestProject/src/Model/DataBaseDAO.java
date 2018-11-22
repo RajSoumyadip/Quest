@@ -84,7 +84,9 @@ import java.util.ArrayList;
 		}
 		public ArrayList<String> ShowAllQuestionScience()
 		{
+			
 			String content="";
+			String chk="";
 			ArrayList<String> temp = new ArrayList<String>();
 			try {
 				Class.forName("com.mysql.jdbc.Driver");
@@ -92,14 +94,24 @@ import java.util.ArrayList;
 				String user="root";
 				String pass="root";
 				Connection con=DriverManager.getConnection(url,user,pass);
-				String sql="select * from Question_Post left join Answer_Post on Question_Post.ques_id = Answer_Post.ans_ques_id and Question_Post.category = 'Science'";
+				String sql="select * from Question_Post qp left join Answer_Post ap on qp.ques_id = ap.ans_ques_id";
 				PreparedStatement ps=con.prepareStatement(sql);
 				ResultSet rs=ps.executeQuery();
 				while(rs.next()) {
+					String ques_id = rs.getString(1);
+					if(chk.equals(ques_id)==true)
+					{
+						content =("Answered By: @"+rs.getString(6)+ ": :"+rs.getString(7));
+						temp.add(content);
+						System.out.println(content);
+					}
+					else {
 					content =("Asked By @ "+
 							rs.getString(2)+" : "+rs.getString(4)+" Answered By: @"+rs.getString(6)+ ": :"+rs.getString(7));
 					System.out.println(content);
 				temp.add(content);
+				}
+					chk = ques_id;
 				}
 				con.close();
 				
@@ -109,6 +121,7 @@ import java.util.ArrayList;
 			}
 			return temp;
 		}
+		
 		
 		public String ShowAllQuestionPolitics()
 		{

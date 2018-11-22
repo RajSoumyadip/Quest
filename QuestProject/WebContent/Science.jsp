@@ -23,6 +23,7 @@
      }  
 	%>
 	
+	
 	<form action="Add_Question" method="post">
 		Question : <input type="text" name="t1" /><br> 
 		<input type="submit">
