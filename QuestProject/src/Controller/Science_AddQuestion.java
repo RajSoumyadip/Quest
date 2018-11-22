@@ -38,7 +38,7 @@ public class Science_AddQuestion extends HttpServlet {
 		DataBaseDAO obj = new DataBaseDAO();
 		String question = request.getParameter("t1");
 		System.out.println(question);
-		boolean res = obj.insertQues("qsc"+question.substring(4, 8), "102", "Science", question);
+		boolean res = obj.insertQues("qsc"+question.substring(4, 6), "102", "Science", question);
 		response.sendRedirect("Science.jsp");
 	}
 

@@ -92,7 +92,7 @@ import java.util.ArrayList;
 				String user="root";
 				String pass="root";
 				Connection con=DriverManager.getConnection(url,user,pass);
-				String sql="Select * from test where category='Science' ";
+				String sql="select * from Question_Post inner join User on Question_Post.ques_user_id = User.user_id and Question_Post.category = 'Science'";
 				PreparedStatement ps=con.prepareStatement(sql);
 				ResultSet rs=ps.executeQuery();
 				while(rs.next()) {
