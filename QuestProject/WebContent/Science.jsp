@@ -12,6 +12,7 @@
 </head>
 <body>
 <h1><center>Science And Technology</center></h1>
+<form action="add_Answer">
 <%  PrintWriter ob = response.getWriter();
 	DataBaseDAO data = new DataBaseDAO();
 	ArrayList<String> hold = new ArrayList<String>();
@@ -19,9 +20,14 @@
 	for (String str : hold) {
 		%>
 		<h5><p><%= str %></p></h5>
+		
+		Post Answer : <input type="text" name="pa" /><br> 
+		<input type="submit" value="Post">
 		<%
      }  
 	%>
+</form>
+
 	
 	
 	<form action="Add_Question" method="post">
