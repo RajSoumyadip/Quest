@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 //Defining class
 	public class DataBaseDAO {
 		
@@ -73,7 +74,7 @@ import java.sql.ResultSet;
 				PreparedStatement ps=con.prepareStatement(sql);
 				ResultSet rs=ps.executeQuery();
 				while(rs.next())
-					content = content + (rs.getString(1)+" "+
+					content = content + (
 							rs.getString(2)+" "+rs.getString(4));
 				con.close();
 			} catch (Exception e) {
@@ -81,26 +82,32 @@ import java.sql.ResultSet;
 			}
 			return content;
 		}
-		public String ShowAllQuestionScience()
+		public ArrayList<String> ShowAllQuestionScience()
 		{
 			String content="";
+			ArrayList<String> temp = new ArrayList<String>();
 			try {
 				Class.forName("com.mysql.jdbc.Driver");
 				String url="jdbc:mysql://localhost:3306/QuestDB";
 				String user="root";
 				String pass="root";
 				Connection con=DriverManager.getConnection(url,user,pass);
-				String sql="Select * from Question_Post where category='Science' ";
+				String sql="Select * from test where category='Science' ";
 				PreparedStatement ps=con.prepareStatement(sql);
 				ResultSet rs=ps.executeQuery();
-				while(rs.next())
-					content = content + (rs.getString(1)+" "+
-							rs.getString(2)+" "+rs.getString(4));
+				while(rs.next()) {
+					content =("Asked By @ "+
+							rs.getString(6)+" "+rs.getString(7)+" : "+rs.getString(4));
+					System.out.println(content);
+				temp.add(content);
+				}
 				con.close();
-			} catch (Exception e) {
+				
+				} 
+				catch (Exception e) {
 				e.printStackTrace();
 			}
-			return content;
+			return temp;
 		}
 		
 		public String ShowAllQuestionPolitics()
