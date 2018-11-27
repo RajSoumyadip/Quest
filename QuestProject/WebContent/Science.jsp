@@ -13,17 +13,31 @@
 <body>
 <h1><center>Science And Technology</center></h1>
 <form action="add_Answer">
-<%  PrintWriter ob = response.getWriter();
+<% 
+	
+	int k=0;
 	DataBaseDAO data = new DataBaseDAO();
 	ArrayList<String> hold = new ArrayList<String>();
 	hold = data.ShowAllQuestionScience();
 	for (String str : hold) {
-		%>
-		<h5><p><%= str %></p></h5>
+			k=0;
+		for(int i = 0 ; i < str.length(); i++)
+		{
+			if (str.charAt(i)=='#')
+			{
+				break;
+			}
+			k++;	
+			
+		}
 		
-		Post Answer : <input type="text" name="pa" /><br> 
-		<input type="submit" value="Post">
+		String p = str.substring(k);
+		
+		System.out.println(p);
+		%>
+		<h5><p><a href = "Particular.jsp?val=<%=str%>"><%=p %></a></p></h5>
 		<%
+		
      }  
 	%>
 </form>

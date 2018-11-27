@@ -94,24 +94,12 @@ import java.util.ArrayList;
 				String user="root";
 				String pass="root";
 				Connection con=DriverManager.getConnection(url,user,pass);
-				String sql="select * from Question_Post qp left join Answer_Post ap on qp.ques_id = ap.ans_ques_id";
+				String sql="Select * from Question_Post where Question_Post.category='Science'";
 				PreparedStatement ps=con.prepareStatement(sql);
 				ResultSet rs=ps.executeQuery();
 				while(rs.next()) {
-					String ques_id = rs.getString(1);
-					if(chk.equals(ques_id)==true)
-					{
-						content =("Answered By: @"+rs.getString(6)+ ": :"+rs.getString(7));
-						temp.add(content);
-						System.out.println(content);
-					}
-					else {
-					content =("Asked By @ "+
-							rs.getString(2)+" : "+rs.getString(4)+" Answered By: @"+rs.getString(6)+ ": :"+rs.getString(7));
-					System.out.println(content);
-				temp.add(content);
-				}
-					chk = ques_id;
+					content =rs.getString(1)+" "+ "#Asked By @"+rs.getString(2)+": :"+rs.getString(4);
+					temp.add(content);
 				}
 				con.close();
 				
@@ -122,6 +110,59 @@ import java.util.ArrayList;
 			return temp;
 		}
 		
+		public ArrayList<String> ShowAllAnswersScience(String id)
+		{
+			
+			String content="";
+			String chk="";
+			ArrayList<String> temp = new ArrayList<String>();
+			try {
+				Class.forName("com.mysql.jdbc.Driver");
+				String url="jdbc:mysql://localhost:3306/QuestDB";
+				String user="root";
+				String pass="root";
+				Connection con=DriverManager.getConnection(url,user,pass);
+				String sql="select * from Answer_Post left join User on Answer_Post.ans_user_id=User.user_id where category='Science'and ans_ques_id="+"'"+id+"'";          ;
+				PreparedStatement ps=con.prepareStatement(sql);
+				ResultSet rs=ps.executeQuery();
+				while(rs.next()) {
+					content ="Answered By @"+rs.getString(7)+" "+rs.getString(8)+": :"+rs.getString(3);
+					temp.add(content);
+				}
+				con.close();
+				
+				} 
+				catch (Exception e) {
+				e.printStackTrace();
+			}
+			return temp;
+		}
+		
+		public String DisplayQuestion(String id)
+		{
+			String temp="";
+			try {
+				Class.forName("com.mysql.jdbc.Driver");
+				String url="jdbc:mysql://localhost:3306/QuestDB";
+				String user="root";
+				String pass="root";
+				Connection con=DriverManager.getConnection(url,user,pass);
+				String sql="select * from Question_Post left join User on Question_Post.ques_user_id = User.user_id where ques_id=" + "'" + id+ "'"+ "and Question_Post.category = 'Science'";
+				PreparedStatement ps=con.prepareStatement(sql);
+				ResultSet rs=ps.executeQuery();
+				while(rs.next()) {
+					temp ="Asked By @"+rs.getString(6)+" "+rs.getString(7)+": :"+rs.getString(4);
+					
+				}
+				con.close();
+				
+				} 
+				catch (Exception e) {
+				e.printStackTrace();
+			}
+			return temp;
+			
+		}
 		
 		public String ShowAllQuestionPolitics()
 		{
