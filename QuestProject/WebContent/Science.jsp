@@ -6,12 +6,21 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+<link rel="stylesheet" href="css/style.css">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta charset="UTF-8">
+<style type="text/css">
+body{
+   margin: 45px;
+  
+  }
+</style>
 <title>Science And Technology</title>
 <script src="Scripts/post.js" type="text/javascript"></script>
 </head>
-<body>
-<h1><center>Science And Technology</center></h1>
+<body  background="sciencebg.jpg">
+
 <form action="add_Answer">
 <% 
 	
@@ -33,9 +42,22 @@
 		
 		String p = str.substring(k);
 		
-		System.out.println(p);
 		%>
-		<h5><p><a href = "Particular.jsp?val=<%=str%>"><%=p %></a></p></h5>
+		
+		
+
+		<div margin=75px class="card">
+  			<div class="card-header">
+   				UserName
+ 		 	</div>
+  			<div class="card-body">
+    		<blockquote class="blockquote mb-0">
+    			 <p><a href = "Particular.jsp?val=<%=str%>"><%=p %></a></p>
+    		</blockquote>
+  			</div>
+		</div>
+		<br>
+		
 		<%
 		
      }  
@@ -49,6 +71,6 @@
 		<input type="submit">
 		</form>
 		
-	
+
 </body>
 </html>
