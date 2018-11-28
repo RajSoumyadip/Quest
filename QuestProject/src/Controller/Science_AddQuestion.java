@@ -12,7 +12,7 @@ import Model.DataBaseDAO;
 /**
  * Servlet implementation class Science_AddQuestion
  */
-@WebServlet("/Add_Question")
+@WebServlet("/Add_Question_Science")
 public class Science_AddQuestion extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
