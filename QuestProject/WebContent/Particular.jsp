@@ -12,6 +12,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <style type="text/css">
 body{
+  
    margin-left: 145px;
    margin-right: 145px;
    margin-top: 60px;
@@ -41,7 +42,7 @@ for(int i = 0 ; i < ques.length(); i++)
 	
 }
 String q2 = ques.substring(km);
-String as = ques.substring(0, km-2);
+String as = ques.substring(0, km);
 km=0;
 %>
 <div margin=75px class="card">
@@ -58,7 +59,7 @@ km=0;
 
 
 <% 
-hold = dataP.ShowAllAnswersScience(q);
+hold = dataP.ShowAllAnswers(q);
 	
 	for(String str : hold)
 	{
@@ -90,6 +91,24 @@ hold = dataP.ShowAllAnswersScience(q);
 		</div>
 	
 <%} %>
+
+<div class="card">
+  <div class="card-header">
+    <h3>Post your Answer</h3>
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">
+    <form action="Add_Answer" method="post">
+  <div class="form-group">
+    <input class="form-control" type="text" placeholder="Answer..." name="a1" /><br> 
+    <input type="hidden" value =<%=q%> name="qid">
+    <input type="hidden" value="Science" name="category">
+  </div>
+  <button type="submit" class="btn btn-primary">Post</button>
+</form></h5>
+   
+  </div>
+</div>
 
 
 

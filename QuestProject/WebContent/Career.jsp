@@ -6,33 +6,31 @@
 <!DOCTYPE html>
 <html>
 <head>
-
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 <link rel="stylesheet" href="css/style.css">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta charset="UTF-8">
 <style type="text/css">
-
-  .bapar
-  {
-  margin-left: 145px;
+body{
+   margin-left: 145px;
    margin-right: 145px;
    margin-top: 60px;
    margin-bottom: 60px;
+  
   }
 </style>
-<title>Science And Technology</title>
+<title>Career And Education</title>
 <script src="Scripts/post.js" type="text/javascript"></script>
 </head>
 <body  background="sciencebg.jpg">
 
-<div class="bapar">
+<form action="add_Answer">
 <% 
 	
 	int k=0,km=0;
 	DataBaseDAO data = new DataBaseDAO();
 	ArrayList<String> hold = new ArrayList<String>();
-	hold = data.ShowAllQuestionScience();
+	hold = data.ShowAllQuestionCareer();
 	for (String str : hold) {
 			k=0;
 			km=0;
@@ -81,7 +79,7 @@
  		 	</div>
   			<div class="card-body">
     		<blockquote class="blockquote mb-0">
-    			 <p><a href = "Particular.jsp?val=<%=str%>"><%=pm %></a></p>
+    			 <p><a href = "Particular.jsp?val=<%=str%>?cat=Career"><%=pm %></a></p>
     		</blockquote>
   			</div>
 		</div>
@@ -91,7 +89,7 @@
 		
      }  
 	%>
-
+</form>
 
 <div class="card">
   <div class="card-header">
@@ -99,7 +97,7 @@
   </div>
   <div class="card-body">
     <h5 class="card-title">
-    <form action="Add_Question_Science" method="post">
+    <form action="Add_Question_Career" method="post">
   <div class="form-group">
     <input class="form-control" type="text" placeholder="Question" name="t1" /><br> 
   </div>
@@ -113,7 +111,7 @@
 	
 	
 	
-		</div>
+		
 
 </body>
 </html>

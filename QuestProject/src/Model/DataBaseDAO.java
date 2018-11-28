@@ -35,6 +35,56 @@ import java.util.ArrayList;
 			return result;
 		}
 		
+		public int CountQuestion()
+		{
+			int c=0;
+			try {
+				Class.forName("com.mysql.jdbc.Driver");
+				String url="jdbc:mysql://localhost:3306/QuestDB";
+				String user="root";
+				String pass="root";
+				Connection con=DriverManager.getConnection(url,user,pass);
+				String sql="select count(question) from Question_Post";
+				PreparedStatement ps=con.prepareStatement(sql);
+				ResultSet rs=ps.executeQuery();
+				while(rs.next()) {
+					c = rs.getInt(1);
+				}
+				con.close();
+				
+				} 
+				catch (Exception e) {
+				e.printStackTrace();
+			}
+			return c;
+			
+		}
+		
+		public int CountAnswer()
+		{
+			int c=0;
+			try {
+				Class.forName("com.mysql.jdbc.Driver");
+				String url="jdbc:mysql://localhost:3306/QuestDB";
+				String user="root";
+				String pass="root";
+				Connection con=DriverManager.getConnection(url,user,pass);
+				String sql="select count(answer) from Answer_Post";
+				PreparedStatement ps=con.prepareStatement(sql);
+				ResultSet rs=ps.executeQuery();
+				while(rs.next()) {
+					c = rs.getInt(1);
+				}
+				con.close();
+				
+				} 
+				catch (Exception e) {
+				e.printStackTrace();
+			}
+			return c;
+			
+		}
+		
 		public boolean insertAnswer(String id, String uid, String ans, String cat, String ques_id)
 		{
 			boolean result=true;
@@ -61,27 +111,89 @@ import java.util.ArrayList;
 			return result;
 		}
 
-		public String ShowAllQuestionCareer()
+		public ArrayList<String> ShowAllQuestionCareer()
 		{
+			
 			String content="";
+			String chk="";
+			ArrayList<String> temp = new ArrayList<String>();
 			try {
 				Class.forName("com.mysql.jdbc.Driver");
 				String url="jdbc:mysql://localhost:3306/QuestDB";
 				String user="root";
 				String pass="root";
 				Connection con=DriverManager.getConnection(url,user,pass);
-				String sql="Select * from Question_Post where category='Career' ";
+				String sql="Select * from Question_Post where Question_Post.category='Career'";
 				PreparedStatement ps=con.prepareStatement(sql);
 				ResultSet rs=ps.executeQuery();
-				while(rs.next())
-					content = content + (
-							rs.getString(2)+" "+rs.getString(4));
+				while(rs.next()) {
+					content =rs.getString(1)+" "+ "#Asked By @"+rs.getString(2)+": :"+rs.getString(4);
+					temp.add(content);
+				}
 				con.close();
-			} catch (Exception e) {
+				
+				} 
+				catch (Exception e) {
 				e.printStackTrace();
 			}
-			return content;
+			return temp;
 		}
+		
+		public boolean insertAnswerCareer(String id, String uid, String ans, String cat, String ques_id)
+		{
+			boolean result=true;
+			try{
+				Class.forName("com.mysql.jdbc.Driver");
+				String url="jdbc:mysql://localhost:3306/QuestDB";
+				String user="root";
+				String pass="root";
+				Connection con=(Connection) DriverManager.getConnection(url,user,pass);
+				PreparedStatement ps=con.prepareStatement("Insert into Answer_Post values(?,?,?,?,?)");
+				ps.setString(1,id);
+				ps.setString(2, uid);
+				ps.setString(3, ans);
+				ps.setString(4, cat);
+				ps.setString(5, ques_id);
+				
+				ps.executeUpdate();
+			}
+			catch(Exception ex)
+			{
+				ex.printStackTrace();
+				result=false;
+			}
+			return result;
+		}
+		
+		public ArrayList<String> ShowAllAnswersCareer(String id)
+		{
+			
+			String content="";
+			String chk="";
+			ArrayList<String> temp = new ArrayList<String>();
+			try {
+				Class.forName("com.mysql.jdbc.Driver");
+				String url="jdbc:mysql://localhost:3306/QuestDB";
+				String user="root";
+				String pass="root";
+				Connection con=DriverManager.getConnection(url,user,pass);
+				String sql="select * from Answer_Post left join User on Answer_Post.ans_user_id=User.user_id where category='Career'and ans_ques_id="+"'"+id+"'";          ;
+				PreparedStatement ps=con.prepareStatement(sql);
+				ResultSet rs=ps.executeQuery();
+				while(rs.next()) {
+					content ="Answered By @"+rs.getString(7)+" "+rs.getString(8)+": :"+rs.getString(3);
+					temp.add(content);
+				}
+				con.close();
+				
+				} 
+				catch (Exception e) {
+				e.printStackTrace();
+			}
+			return temp;
+		}
+
+		
 		public ArrayList<String> ShowAllQuestionScience()
 		{
 			
@@ -110,7 +222,7 @@ import java.util.ArrayList;
 			return temp;
 		}
 		
-		public ArrayList<String> ShowAllAnswersScience(String id)
+		public ArrayList<String> ShowAllAnswers(String id)
 		{
 			
 			String content="";
@@ -122,7 +234,7 @@ import java.util.ArrayList;
 				String user="root";
 				String pass="root";
 				Connection con=DriverManager.getConnection(url,user,pass);
-				String sql="select * from Answer_Post left join User on Answer_Post.ans_user_id=User.user_id where category='Science'and ans_ques_id="+"'"+id+"'";          ;
+				String sql="select * from Answer_Post left join User on Answer_Post.ans_user_id=User.user_id where category='Science'and ans_ques_id="+"'"+id+"'";          
 				PreparedStatement ps=con.prepareStatement(sql);
 				ResultSet rs=ps.executeQuery();
 				while(rs.next()) {
@@ -138,7 +250,7 @@ import java.util.ArrayList;
 			return temp;
 		}
 		
-		public String DisplayQuestion(String id)
+		public String DisplayQuestionScience(String id)
 		{
 			String temp="";
 			try {
@@ -164,49 +276,89 @@ import java.util.ArrayList;
 			
 		}
 		
-		public String ShowAllQuestionPolitics()
+		public String DisplayQuestion(String id)
 		{
-			String content="";
+			String temp="";
 			try {
 				Class.forName("com.mysql.jdbc.Driver");
 				String url="jdbc:mysql://localhost:3306/QuestDB";
 				String user="root";
 				String pass="root";
 				Connection con=DriverManager.getConnection(url,user,pass);
-				String sql="Select * from Question_Post where category='Politics' ";
+				String sql="select * from Question_Post left join User on Question_Post.ques_user_id = User.user_id where ques_id=" + "'" + id+ "'";
 				PreparedStatement ps=con.prepareStatement(sql);
 				ResultSet rs=ps.executeQuery();
-				while(rs.next())
-					content = content + (rs.getString(1)+" "+
-							rs.getString(2)+" "+rs.getString(4));
+				while(rs.next()) {
+					temp ="Asked By @"+rs.getString(6)+" "+rs.getString(7)+": :"+rs.getString(4);
+					
+				}
 				con.close();
-			} catch (Exception e) {
+				
+				} 
+				catch (Exception e) {
 				e.printStackTrace();
 			}
-			return content;
+			return temp;
+			
 		}
 		
-		public String ShowAllQuestionSports()
+		public ArrayList<String> ShowAllQuestionPolitics()
 		{
+			
 			String content="";
+			String chk="";
+			ArrayList<String> temp = new ArrayList<String>();
 			try {
 				Class.forName("com.mysql.jdbc.Driver");
 				String url="jdbc:mysql://localhost:3306/QuestDB";
 				String user="root";
 				String pass="root";
 				Connection con=DriverManager.getConnection(url,user,pass);
-				String sql="Select * from Question_Post where category='Sports' ";
+				String sql="Select * from Question_Post where Question_Post.category='Politics'";
 				PreparedStatement ps=con.prepareStatement(sql);
 				ResultSet rs=ps.executeQuery();
-				while(rs.next())
-					content = content + (rs.getString(1)+" "+
-							rs.getString(2)+" "+rs.getString(4));
+				while(rs.next()) {
+					content =rs.getString(1)+" "+ "#Asked By @"+rs.getString(2)+": :"+rs.getString(4);
+					temp.add(content);
+				}
 				con.close();
-			} catch (Exception e) {
+				
+				} 
+				catch (Exception e) {
 				e.printStackTrace();
 			}
-			return content;
+			return temp;
 		}
+		
+		public ArrayList<String> ShowAllQuestionSports()
+		{
+			
+			String content="";
+			String chk="";
+			ArrayList<String> temp = new ArrayList<String>();
+			try {
+				Class.forName("com.mysql.jdbc.Driver");
+				String url="jdbc:mysql://localhost:3306/QuestDB";
+				String user="root";
+				String pass="root";
+				Connection con=DriverManager.getConnection(url,user,pass);
+				String sql="Select * from Question_Post where Question_Post.category='Sports'";
+				PreparedStatement ps=con.prepareStatement(sql);
+				ResultSet rs=ps.executeQuery();
+				while(rs.next()) {
+					content =rs.getString(1)+" "+ "#Asked By @"+rs.getString(2)+": :"+rs.getString(4);
+					temp.add(content);
+				}
+				con.close();
+				
+				} 
+				catch (Exception e) {
+				e.printStackTrace();
+			}
+			return temp;
+		}
+		
+	
 
 	}
 

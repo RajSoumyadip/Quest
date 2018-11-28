@@ -10,17 +10,16 @@ import javax.servlet.http.HttpServletResponse;
 import Model.DataBaseDAO;
 
 /**
- * Servlet implementation class Science_AddQuestion
+ * Servlet implementation class Career_AddQuestion
  */
-@WebServlet("/Add_Question_Science")
-public class Science_AddQuestion extends HttpServlet {
+@WebServlet("/Add_Question_Career")
+public class Career_AddQuestion extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Science_AddQuestion() {
+    public Career_AddQuestion() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -28,19 +27,21 @@ public class Science_AddQuestion extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+
 		DataBaseDAO obj = new DataBaseDAO();
 		String question = request.getParameter("t1");
-		System.out.println(question);
+		
 		int quesno = obj.CountQuestion();
-		boolean res = obj.insertQues("qsc"+quesno, "102", "Science", question);
-		response.sendRedirect("Science.jsp");
+		boolean res = obj.insertQues("qsc"+quesno, "102", "Career", question);
+		response.sendRedirect("Career.jsp");
 	}
 
 }

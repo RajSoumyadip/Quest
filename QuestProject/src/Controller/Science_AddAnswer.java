@@ -10,17 +10,16 @@ import javax.servlet.http.HttpServletResponse;
 import Model.DataBaseDAO;
 
 /**
- * Servlet implementation class Science_AddQuestion
+ * Servlet implementation class Science_AddAnswer
  */
-@WebServlet("/Add_Question_Science")
-public class Science_AddQuestion extends HttpServlet {
+@WebServlet("/Add_Answer")
+public class Science_AddAnswer extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Science_AddQuestion() {
+    public Science_AddAnswer() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -28,19 +27,22 @@ public class Science_AddQuestion extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		DataBaseDAO obj = new DataBaseDAO();
-		String question = request.getParameter("t1");
-		System.out.println(question);
-		int quesno = obj.CountQuestion();
-		boolean res = obj.insertQues("qsc"+quesno, "102", "Science", question);
-		response.sendRedirect("Science.jsp");
+		String answer = request.getParameter("a1");
+		String id = request.getParameter("qid");
+		String categ = request.getParameter("category");
+		System.out.println(answer);
+		int ansno=obj.CountAnswer();
+		boolean res = obj.insertAnswer("ans"+ansno, "102",answer, categ , id );
+		response.sendRedirect("answerRecorded.html");
 	}
 
 }
