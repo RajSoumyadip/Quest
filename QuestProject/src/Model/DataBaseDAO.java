@@ -10,6 +10,120 @@ import java.util.ArrayList;
 //Defining class
 	public class DataBaseDAO {
 		
+		public boolean AddUser(String uid, String fname, String lname, String em, String passw)
+		{
+			boolean result=true;
+			try{
+				Class.forName("com.mysql.jdbc.Driver");
+				String url="jdbc:mysql://localhost:3306/QuestDB";
+				String user="root";
+				String pass="root";
+				Connection con=(Connection) DriverManager.getConnection(url,user,pass);
+				PreparedStatement ps=con.prepareStatement("Insert into User values(?,?,?,?,?)");
+				ps.setString(1,uid);
+				ps.setString(2, fname);
+				ps.setString(3, lname);
+				ps.setString(4, em);
+				ps.setString(5, passw);
+				
+				
+				ps.executeUpdate();
+			}
+			catch(Exception ex)
+			{
+				ex.printStackTrace();
+				result=false;
+			}
+			return result;
+		}
+		
+		public boolean UserExists(String email , String pas)
+		{
+			
+			int c=0;
+			try {
+				Class.forName("com.mysql.jdbc.Driver");
+				String url="jdbc:mysql://localhost:3306/QuestDB";
+				String user="root";
+				String pass="root";
+				Connection con=DriverManager.getConnection(url,user,pass);
+				String sql="select count(user_id) from User where User.email="+"'"+email+"'"+" "+"and User.password="+"'"+pas+"'";
+				PreparedStatement ps=con.prepareStatement(sql);
+				ResultSet rs=ps.executeQuery();
+				while(rs.next()) {
+					c = rs.getInt(1);
+				}
+				con.close();
+				
+				}
+				
+				catch (Exception e) {
+				e.printStackTrace();
+			}
+			if(c>=1)
+				return true;
+			else
+				return false;
+			
+			
+		}
+		
+		public String UserExistenceInfo(String email , String pas)
+		{
+			
+			String userinfo="";
+			try {
+				Class.forName("com.mysql.jdbc.Driver");
+				String url="jdbc:mysql://localhost:3306/QuestDB";
+				String user="root";
+				String pass="root";
+				Connection con=DriverManager.getConnection(url,user,pass);
+				String sql="select * from User where User.email="+"'"+email+"'"+" "+"and User.password="+"'"+pas+"'";
+				PreparedStatement ps=con.prepareStatement(sql);
+				ResultSet rs=ps.executeQuery();
+				while(rs.next()) {
+					userinfo = rs.getString(2)+" "+ rs.getString(3);
+				}
+				con.close();
+				
+				}
+				
+				catch (Exception e) {
+				e.printStackTrace();
+			}
+			return userinfo;
+			
+			
+		}
+		public String UserExistenceID(String email , String pas)
+		{
+			
+			String userinfo="";
+			try {
+				Class.forName("com.mysql.jdbc.Driver");
+				String url="jdbc:mysql://localhost:3306/QuestDB";
+				String user="root";
+				String pass="root";
+				Connection con=DriverManager.getConnection(url,user,pass);
+				String sql="select * from User where User.email="+"'"+email+"'"+" "+"and User.password="+"'"+pas+"'";
+				PreparedStatement ps=con.prepareStatement(sql);
+				ResultSet rs=ps.executeQuery();
+				while(rs.next()) {
+					userinfo = rs.getString(1);
+				}
+				con.close();
+				
+				}
+				
+				catch (Exception e) {
+				e.printStackTrace();
+			}
+			return userinfo;
+			
+			
+		}
+		
+		
 		public boolean insertQues(String id, String uid, String cat, String ques)
 		{
 			boolean result=true;
@@ -70,6 +184,31 @@ import java.util.ArrayList;
 				String pass="root";
 				Connection con=DriverManager.getConnection(url,user,pass);
 				String sql="select count(answer) from Answer_Post";
+				PreparedStatement ps=con.prepareStatement(sql);
+				ResultSet rs=ps.executeQuery();
+				while(rs.next()) {
+					c = rs.getInt(1);
+				}
+				con.close();
+				
+				} 
+				catch (Exception e) {
+				e.printStackTrace();
+			}
+			return c;
+			
+		}
+		
+		public int CountUser()
+		{
+			int c=0;
+			try {
+				Class.forName("com.mysql.jdbc.Driver");
+				String url="jdbc:mysql://localhost:3306/QuestDB";
+				String user="root";
+				String pass="root";
+				Connection con=DriverManager.getConnection(url,user,pass);
+				String sql="select count(last_name) from User";
 				PreparedStatement ps=con.prepareStatement(sql);
 				ResultSet rs=ps.executeQuery();
 				while(rs.next()) {
