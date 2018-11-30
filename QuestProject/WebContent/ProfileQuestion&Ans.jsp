@@ -49,11 +49,13 @@
 <% String username = (String)session.getAttribute("uname"); %>
 <div class ="bgimg-1">
   <div class="navbar">
-    <a href="#"><button type="button" class="btn btn-outline-secondary" onclick="location.href='topic.jsp'">Home</button></a> 
+    <button type="button" class="btn btn-outline-secondary" onclick="location.href='topic.jsp'">Home</button>
 
-  <a href="#"><button type="button" class="btn btn-outline-secondary"> <%= username %> Questions</button></a> 
-    <a href="#"><button type="button" class="btn btn-outline-secondary" onclick="location.href='Science.jsp'">Log out</button></a> 
-
+  <button type="button" class="btn btn-outline-secondary" onclick="location.href='Profile.jsp'"><%= username %> Questions</button> 
+   
+   <form action="logout" method="post">
+   <button type="submit" class="btn btn-outline-secondary">Log out</button> 
+</form>
 	</div>
 <%
 String userid = (String)session.getAttribute("userid");
@@ -62,7 +64,27 @@ ArrayList<String> hold = new ArrayList<String>();
 hold = dataBaseDAO.QuestionOfUser(userid);
 int c = 0;
 for(String str : hold)
-{
+{	c=0;
+	if(str=="")
+	{%>
+<div class="card">
+  <div class="card-header">
+    Team Quest
+  </div>
+  <div class="card-body">
+  <div class="jumbotron">
+  <h1 class="display-4"><p>Oops,</p><%=username %></h1>
+  <p class="lead">You haven't asked any question so far!! Start Asking!!</p>
+  <hr class="my-4">
+  </div>
+  </div>
+</div>
+		
+	<%
+	
+	break;
+	}
+	
 	for(int i = 0;i<str.length();i++)
 	{
 		if(str.charAt(i)==':')

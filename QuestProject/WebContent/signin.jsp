@@ -13,9 +13,9 @@ background-color: #D6EAF8;
 }
 	 .bapar
   {
-  margin-left: 145px;
+  margin-left: 550px;
    margin-right: 145px;
-   margin-top: 60px;
+   margin-top: 180px;
    margin-bottom: 60px;
   }
 	</style>

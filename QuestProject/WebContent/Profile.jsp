@@ -47,11 +47,13 @@
 <% String username = (String)session.getAttribute("uname"); %>
 <div class ="bgimg-1">
   <div class="navbar">
-    <a href="#"><button type="button" class="btn btn-outline-secondary" onclick="location.href='topic.jsp'">Home</button></a> 
+     <button type="button" class="btn btn-outline-secondary" onclick="location.href='topic.jsp'">Home</button>
 
-  <a href="#"><button type="button" class="btn btn-outline-secondary" onclick="location.href='Science.jsp'">Welcome <%= username %></button></a> 
-    <a href="#"><button type="button" class="btn btn-outline-secondary" onclick="location.href='Science.jsp'">Log out</button></a> 
-
+  <button type="button" class="btn btn-outline-secondary" onclick="location.href='Profile.jsp'">Welcome <%= username %></button> 
+   
+   <form action="logout" method="post">
+   <button type="submit" class="btn btn-outline-secondary">Log out</button> 
+</form>
 	</div>
 
 <div class="bapar">

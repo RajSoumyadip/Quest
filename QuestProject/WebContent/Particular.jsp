@@ -45,17 +45,18 @@ String q2 = ques.substring(km);
 String as = ques.substring(0, km);
 km=0;
 %>
-<div margin=75px class="card">
-  			<div class="card-header">
- 			
-   				<%=as %>
- 		 	</div>
-  			<div class="card-body">
-    		<blockquote class="blockquote mb-0">
-    			 <p><%= q2 %></p>
-    		</blockquote>
-  			</div>
-		</div><br>
+
+		<div class="card">
+  <div  class="card-header">
+    <%=as %>
+  </div>
+  <div class="card-body">
+  <div class="jumbotron">
+  <h1 class="display-4"><%=q2 %></h1>
+ </div>
+  </div>
+</div><br>
+		
 
 
 <% 

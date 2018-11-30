@@ -13,9 +13,9 @@ background-color: #D6EAF8;
 }
 		 .bapar
   {
-  margin-left: 145px;
+  margin-left: 500px;
    margin-right: 145px;
-   margin-top: 60px;
+   margin-top: 180px;
    margin-bottom: 60px;
   }
 	</style>
@@ -28,7 +28,7 @@ background-color: #D6EAF8;
 
 
 <form action="signupServlet" method="post">
-<div class="card" style="max-width: 20rem;">
+<div class="card" style="max-width: 30rem;">
   <div class="card-header"><center>Create an Account</div>
   <div class="card-body">
   <div class="jumbotron">

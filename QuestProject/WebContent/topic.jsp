@@ -185,8 +185,9 @@ input[type=text]:focus, input[type=password]:focus {
     <a href="#"><button type="button" class="btn btn-outline-secondary" onclick="location.href='topic.jsp'">Home</button></a> 
 
   <a href="#"><button type="button" class="btn btn-outline-secondary" onclick="location.href='Profile.jsp'">Welcome <%= username %></button></a> 
-    <a href="#"><button type="button" class="btn btn-outline-secondary" onclick="location.href='Science.jsp'">Log out</button></a> 
-
+  <form action="logout" method="post">
+    <a href="#"><button type="submit" class="btn btn-outline-secondary">Log out</button></a> 
+</form>
 	</div>
 
 <div class="bg-img-science">
