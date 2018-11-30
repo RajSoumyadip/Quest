@@ -8,42 +8,48 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<style type="text/css">
-	.try{
-	{
-    margin: 0;
-    width:100%
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin-right: -50%;
-    transform: translate(-50%, -50%) }
-	}
+	body{
+background-color: #D6EAF8;
+}
+	 .bapar
+  {
+  margin-left: 145px;
+   margin-right: 145px;
+   margin-top: 60px;
+   margin-bottom: 60px;
+  }
 	</style>
 
 </head>
 
 
-<body background="sciencebg.jpg">
+<body>
 
-
+<div class="bapar">
 <form action="signinServlet" method="post">
-<div class="card text-white bg-secondary mb-3 try" style="max-width: 20rem;">
-  <div class="card-header"><center>Sign In</div>
-  <div class="card-body">
-  <BR>
-    <div class="form-group">
-    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" name="email">
+    <div class="card" style="max-width: 20rem;">
+  <div class="card-header">
+    Sign In
   </div>
+  <div class="card-body">
+  <div class="jumbotron">
+  <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" name="email">
+  <br>
   <div class="form-group">
     <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="pass">
   </div>
-  
-  <button type="submit" class="btn btn-primary">Sign Up</button>
   </div>
-  </form>
-  <center><a href="signup.jsp">Don't have an account?</a></center><br>
+  <button type="submit" class="btn btn-primary">Sign In</button>
+  <br>
+   <center><a href="signup.jsp">Don't have an account?</a></center><br>
+ </form>
+ 
+</div>
+  </div>
+</div>
+ 
 </div>
 
-	
+	</div>
 </body>
 </html>

@@ -179,12 +179,14 @@ input[type=text]:focus, input[type=password]:focus {
 <title>Insert title here</title>
 </head>
 <body>
-
+<% String username = (String)session.getAttribute("uname"); %>
 <div class ="bgimg-1">
   <div class="navbar">
-  <a class="active" href="#"><i class="fa fa-fw fa-home"></i> Home</a> 
-  <a href="#"><i class="fa fa-fw fa-envelope"></i> Contact</a> 
-  <a href="#"><i class="fa fa-fw fa-user"></i> Login</a>
+    <a href="#"><button type="button" class="btn btn-outline-secondary" onclick="location.href='topic.jsp'">Home</button></a> 
+
+  <a href="#"><button type="button" class="btn btn-outline-secondary" onclick="location.href='Profile.jsp'">Welcome <%= username %></button></a> 
+    <a href="#"><button type="button" class="btn btn-outline-secondary" onclick="location.href='Science.jsp'">Log out</button></a> 
+
 	</div>
 
 <div class="bg-img-science">

@@ -6,6 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import Model.DataBaseDAO;
 
@@ -39,7 +40,9 @@ public class Science_AddQuestion extends HttpServlet {
 		String question = request.getParameter("t1");
 		System.out.println(question);
 		int quesno = obj.CountQuestion();
-		boolean res = obj.insertQues("qsc"+quesno, "102", "Science", question);
+		HttpSession session = request.getSession();
+		String uid = (String) session.getAttribute("userid");
+		boolean res = obj.insertQues("qsc"+quesno, uid , "Science", question);
 		response.sendRedirect("Science.jsp");
 	}
 

@@ -8,28 +8,30 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<style type="text/css">
-	.try{
-	{
-    margin: 0;
-    width:100%
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin-right: -50%;
-    transform: translate(-50%, -50%) }
-	}
+	body{
+background-color: #D6EAF8;
+}
+		 .bapar
+  {
+  margin-left: 145px;
+   margin-right: 145px;
+   margin-top: 60px;
+   margin-bottom: 60px;
+  }
 	</style>
 
 </head>
 
 
-<body background="sciencebg.jpg">
+<body >
+<div class="bapar">
 
 
 <form action="signupServlet" method="post">
-<div class="card text-white bg-secondary mb-3 try" style="max-width: 20rem;">
+<div class="card" style="max-width: 20rem;">
   <div class="card-header"><center>Create an Account</div>
   <div class="card-body">
+  <div class="jumbotron">
   <div class="form-row">
     <div class="col">
     <input type="text" class="form-control" placeholder="First name" name="fname">
@@ -47,7 +49,7 @@
   <div class="form-group">
     <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="pass">
   </div>
-  
+  </div>
   <button type="submit" class="btn btn-primary">Sign Up</button>
   </div>
   </form>

@@ -6,6 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import Model.DataBaseDAO;
 
@@ -36,12 +37,15 @@ public class Science_AddAnswer extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		DataBaseDAO obj = new DataBaseDAO();
+		
 		String answer = request.getParameter("a1");
 		String id = request.getParameter("qid");
 		String categ = request.getParameter("category");
 		System.out.println(answer);
 		int ansno=obj.CountAnswer();
-		boolean res = obj.insertAnswer("ans"+ansno, "102",answer, categ , id );
+		HttpSession session = request.getSession();
+		String uid = (String) session.getAttribute("userid");
+		boolean res = obj.insertAnswer("ans"+ansno, uid ,answer, categ , id );
 		response.sendRedirect("answerRecorded.html");
 	}
 

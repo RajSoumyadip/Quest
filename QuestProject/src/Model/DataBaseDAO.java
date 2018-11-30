@@ -37,6 +37,8 @@ import java.util.ArrayList;
 			return result;
 		}
 		
+		
+		
 		public boolean UserExists(String email , String pas)
 		{
 			
@@ -248,6 +250,60 @@ import java.util.ArrayList;
 				result=false;
 			}
 			return result;
+		}
+		
+		public ArrayList<String> QuestionOfUser(String uid)
+		{
+			String content="";
+			String chk="";
+			ArrayList<String> temp = new ArrayList<String>();
+			try {
+				Class.forName("com.mysql.jdbc.Driver");
+				String url="jdbc:mysql://localhost:3306/QuestDB";
+				String user="root";
+				String pass="root";
+				Connection con=DriverManager.getConnection(url,user,pass);
+				String sql="Select * from Question_Post where Question_Post.ques_user_id='"+uid+"'";
+				PreparedStatement ps=con.prepareStatement(sql);
+				ResultSet rs=ps.executeQuery();
+				while(rs.next()) {
+					content =rs.getString(1)+":"+rs.getString(4);
+					temp.add(content);
+				}
+				con.close();
+				
+				} 
+				catch (Exception e) {
+				e.printStackTrace();
+			}
+			return temp;
+		}
+		
+		public ArrayList<String> AnswerOfUser(String uid)
+		{
+			String content="";
+			String chk="";
+			ArrayList<String> temp = new ArrayList<String>();
+			try {
+				Class.forName("com.mysql.jdbc.Driver");
+				String url="jdbc:mysql://localhost:3306/QuestDB";
+				String user="root";
+				String pass="root";
+				Connection con=DriverManager.getConnection(url,user,pass);
+				String sql="Select * from Answer_Post where Answer_Post.ans_ques_id='"+uid+"'";
+				PreparedStatement ps=con.prepareStatement(sql);
+				ResultSet rs=ps.executeQuery();
+				while(rs.next()) {
+					content =rs.getString(3);
+					temp.add(content);
+				}
+				con.close();
+				
+				} 
+				catch (Exception e) {
+				e.printStackTrace();
+			}
+			return temp;
 		}
 
 		public ArrayList<String> ShowAllQuestionCareer()

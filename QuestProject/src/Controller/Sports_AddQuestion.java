@@ -6,6 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import Model.DataBaseDAO;
 
@@ -35,9 +36,10 @@ public class Sports_AddQuestion extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		DataBaseDAO obj = new DataBaseDAO();
 		String question = request.getParameter("t1");
-		
+		HttpSession session = request.getSession();
+		String uid = (String) session.getAttribute("userid");
 		int quesno = obj.CountQuestion();
-		boolean res = obj.insertQues("qsc"+quesno, "102", "Sports", question);
+		boolean res = obj.insertQues("qsc"+quesno, uid , "Sports", question);
 		response.sendRedirect("Sports.jsp");
 	}
 
