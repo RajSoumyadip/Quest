@@ -51,7 +51,11 @@ background-color: #D6EAF8;
 <script src="Scripts/post.js" type="text/javascript"></script>
 </head>
 <body  >
-<% String username = (String)session.getAttribute("uname"); %>
+<% String username = (String)session.getAttribute("uname"); 
+if (username==null)
+	response.sendRedirect("toSignin");
+
+%>
 <div class ="bgimg-1">
   <div class="navbar">
     <button type="button" class="btn btn-outline-secondary" onclick="location.href='topic.jsp'">Home</button>

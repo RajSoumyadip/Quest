@@ -39,7 +39,7 @@ public class Politics_AddQuestion extends HttpServlet {
 		String uid = (String) session.getAttribute("userid");
 		int quesno = obj.CountQuestion();
 		boolean res = obj.insertQues("qsc"+quesno, uid, "Politics", question);
-		response.sendRedirect("Politics.jsp");
+		response.sendRedirect("toPolitics");
 	}
 
 }

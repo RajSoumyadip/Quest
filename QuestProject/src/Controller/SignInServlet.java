@@ -52,7 +52,7 @@ public class SignInServlet extends HttpServlet {
 			uid = dataBaseDAO.UserExistenceID(em, pass);
 			session.setAttribute("uname", username);
 			session.setAttribute("userid", uid);
-			response.sendRedirect("topic.jsp");
+			response.sendRedirect("toTopic");
 			
 		}
 	}

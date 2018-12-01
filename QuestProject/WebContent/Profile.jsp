@@ -44,7 +44,11 @@
 <title>User Profile</title>
 </head>
 <body>
-<% String username = (String)session.getAttribute("uname"); %>
+<% String username = (String)session.getAttribute("uname");
+if (username==null)
+	response.sendRedirect("toSignin");
+
+%>
 <div class ="bgimg-1">
   <div class="navbar">
      <button type="button" class="btn btn-outline-secondary" onclick="location.href='topic.jsp'">Home</button>
@@ -67,7 +71,7 @@
   <p class="lead">Thanks for being a part of this family of Quest. We hope that our team is being able to cater to all your expectations. </p>
   <hr class="my-4">
   <p>You can view all your valuable contributions by clicking on the button below.... </p>
-  <button type="button" class="btn btn-outline-primary" onclick="location.href='ProfileQuestion&Ans.jsp'">Your Questions</button>
+  <button type="button" class="btn btn-outline-primary" onclick="location.href='toProfilecontrib'">Your Questions</button>
  
   
 </div>

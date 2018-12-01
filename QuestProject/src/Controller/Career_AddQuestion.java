@@ -43,7 +43,7 @@ public class Career_AddQuestion extends HttpServlet {
 		String uid = (String) session.getAttribute("userid");
 		int quesno = obj.CountQuestion();
 		boolean res = obj.insertQues("qsc"+quesno, uid , "Career", question);
-		response.sendRedirect("Career.jsp");
+		response.sendRedirect("toCareer");
 	}
 
 }

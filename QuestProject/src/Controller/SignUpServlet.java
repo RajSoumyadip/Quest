@@ -49,11 +49,11 @@ public class SignUpServlet extends HttpServlet {
 			session.setAttribute("uname", name);
 			uid = dataBaseDAO.UserExistenceID(email, pass);
 			session.setAttribute("userid", uid);
-			response.sendRedirect("topic.jsp");
+			response.sendRedirect("toTopic");
 			
 		}
 		else
-			response.sendRedirect("error.html");
+			response.sendRedirect("toError");
 		
 	}
 

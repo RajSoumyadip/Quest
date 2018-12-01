@@ -43,7 +43,7 @@ public class Science_AddQuestion extends HttpServlet {
 		HttpSession session = request.getSession();
 		String uid = (String) session.getAttribute("userid");
 		boolean res = obj.insertQues("qsc"+quesno, uid , "Science", question);
-		response.sendRedirect("Science.jsp");
+		response.sendRedirect("toScience");
 	}
 
 }

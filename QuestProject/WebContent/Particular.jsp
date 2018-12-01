@@ -24,6 +24,9 @@ body{
 </head>
 <body background="bggg.jpg">
 <% 
+String username = (String)session.getAttribute("uname");
+if (username==null)
+	response.sendRedirect("toSignin");
 String q = request.getParameter("val"); 
 DataBaseDAO dataP = new DataBaseDAO();
 ArrayList<String> hold = new ArrayList<String>();
