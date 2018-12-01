@@ -34,20 +34,20 @@ background-color: #D6EAF8;
   <div class="jumbotron">
   <div class="form-row">
     <div class="col">
-    <input type="text" class="form-control" placeholder="First name" name="fname">
+    <input type="text" class="form-control" placeholder="First name" name="fname" required>
     </div>
     <div class="col">
-      <input type="text" class="form-control" placeholder="Last name" name="lname">
+      <input type="text" class="form-control" placeholder="Last name" name="lname" required>
     </div>
   </div>
   <BR>
     <div class="form-group">
-    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" name="email">
+    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" name="email" required>
   </div>
   
   
   <div class="form-group">
-    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="pass">
+    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="pass" required>
   </div>
   </div>
   <button type="submit" class="btn btn-primary">Sign Up</button>

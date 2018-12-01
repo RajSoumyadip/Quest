@@ -139,7 +139,7 @@ background-color: #D6EAF8;
     <h5 class="card-title">
     <form action="Add_Question_Sports" method="post">
   <div class="form-group">
-    <input class="form-control" type="text" placeholder="Question" name="t1" /><br> 
+    <input class="form-control" type="text" placeholder="Question" name="t1" required /><br> 
   </div>
   <button type="submit" class="btn btn-primary">Post</button>
 </form></h5>

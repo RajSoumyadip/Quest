@@ -101,7 +101,7 @@ hold = dataP.ShowAllAnswers(q);
     <h5 class="card-title">
     <form action="Add_Answer" method="post">
   <div class="form-group">
-    <input class="form-control" type="text" placeholder="Answer..." name="a1" /><br> 
+    <input class="form-control" type="text" placeholder="Answer..." name="a1" required /><br> 
     <input type="hidden" value =<%=q%> name="qid">
     <input type="hidden" value="Science" name="category">
   </div>

@@ -33,10 +33,10 @@ background-color: #D6EAF8;
   </div>
   <div class="card-body">
   <div class="jumbotron">
-  <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" name="email">
+  <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" name="email" required>
   <br>
   <div class="form-group">
-    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="pass">
+    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="pass" required>
   </div>
   </div>
   <button type="submit" class="btn btn-primary">Sign In</button>
