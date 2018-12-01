@@ -44,7 +44,7 @@ public class SignInServlet extends HttpServlet {
 		boolean exist = dataBaseDAO.UserExists(em,pass);
 		if (exist==false)
 		{
-			response.sendRedirect("error.html");
+			response.sendRedirect("toError");
 		}
 		else
 		{
